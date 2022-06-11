@@ -58,7 +58,7 @@ WITH cte_popular AS (
 		s.customer_id,
 		COUNT(s.product_id) as order_count,
 		m.product_name,
-		DENSE_RANK() OVER (PARTITION BY product_name, ORDER BY order_count desc) AS ranks
+		DENSE_RANK() OVER (PARTITION BY s.customer_id, ORDER BY order_count desc) AS ranks
 	FROM sales s
 	JOIN menu m
 	ON s.product_id = m.product_id
@@ -68,5 +68,27 @@ SELECT
 	customer_id,
 	product_name
 FROM cte_popular
-WHERE ranks = '1';
+WHERE ranks = 1;
+
+--
+-- 6. Which item was purchased first by the customer after they became a member?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
